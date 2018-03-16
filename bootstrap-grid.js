@@ -17,18 +17,19 @@
                 var button = ui.buttonGroup([
                     ui.button({
                         className: 'dropdown-toggle',
-                        contents: '<i class="glyphicon glyphicon-th"/> <span class="note-icon-caret"></span>',
-                        tooltip: "Kolommen",
+                        contents: '<i class="fa fa-th"/>',
+                        tooltip: "Columns",
                         data: {
                             toggle: 'dropdown'
                         }
                     }),
                     ui.dropdown({
-                        className: 'dropdown-menu dropdown-style text-grey-800 bg-white',
+                        className: 'dropdown-menu',
                         contents:
-                            "<li><a href=\"#\" data-colclass=\"6\" data-colcount=\"2\" class=\"text-grey-800\">2 kolommen</a></li>" +
-                            "<li><a href=\"#\" data-colclass=\"4\" data-colcount=\"3\" class=\"text-grey-800\">3 kolommen</a></li>" +
-                            "<li><a href=\"#\" data-colclass=\"3\" data-colcount=\"4\" class=\"text-grey-800\">4 kolommen</a></li>",
+                        "<li class=\"dropdown-item\"><a href=\"#\" class=\"dropdown-item\" data-colclass=\"6\" data-colcount=\"2\">2 columns</a></li>" +
+                        "<li class=\"dropdown-item\"><a href=\"#\" class=\"dropdown-item\" data-colclass=\"4\" data-colcount=\"3\">3 columns</a></li>" +
+                        "<li class=\"dropdown-item\"><a href=\"#\" class=\"dropdown-item\" data-colclass=\"3\" data-colcount=\"4\">4 columns</a></li>" +
+                        "<li class=\"dropdown-item\"><a href=\"#\" class=\"dropdown-item\" data-colclass=\"2\" data-colcount=\"6\">6 columns</a></li>",
                         callback: function ($dropdown) {
                             $dropdown.find('li a').each(function () {
                                 $(this).click(function() {
@@ -42,13 +43,13 @@
                                         var col = document.createElement('div'),
                                             p = document.createElement('p');
                                         col.className = 'col-md-'+colClass;
-                                        p.innerHTML = "Kolom";
+                                        p.innerHTML = "column";
 
                                         col.appendChild(p);
                                         row.appendChild(col);
                                     }
 
-                                    context.invoke("editor.insertNode", row);
+                                    context.invoke("editor.pasteHTML", row.outerHTML);
 
                                     return false;
                                 });
